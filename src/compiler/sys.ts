@@ -553,6 +553,13 @@ namespace ts {
         // not actually work.
         const byteOrderMarkIndicator = "\uFEFF";
 
+        const enum FileSystemEntryKind {
+            File,
+            Directory
+        }
+
+        const fileSystemEntryCache = createMap<FileSystemEntryKind | -1>();
+
         function getNodeSystem(): System {
             const _fs = require("fs");
             const _path = require("path");
@@ -560,10 +567,10 @@ namespace ts {
             // crypto can be absent on reduced node installations
             let _crypto: typeof import("crypto") | undefined;
             try {
-              _crypto = require("crypto");
+                _crypto = require("crypto");
             }
             catch {
-              _crypto = undefined;
+                _crypto = undefined;
             }
 
             const Buffer: {
@@ -576,11 +583,6 @@ namespace ts {
 
             const platform: string = _os.platform();
             const useCaseSensitiveFileNames = isFileSystemCaseSensitive();
-
-            const enum FileSystemEntryKind {
-                File,
-                Directory
-            }
 
             const useNonPollingWatchers = process.env.TSC_NONPOLLING_WATCHER;
             const tscWatchFile = process.env.TSC_WATCHFILE;
@@ -1054,15 +1056,24 @@ namespace ts {
             }
 
             function fileSystemEntryExists(path: string, entryKind: FileSystemEntryKind): boolean {
+                if(fileSystemEntryCache.has(path)) {
+                    return fileSystemEntryCache.get(path) == entryKind;
+                }
                 try {
                     const stat = _fs.statSync(path);
-                    switch (entryKind) {
-                        case FileSystemEntryKind.File: return stat.isFile();
-                        case FileSystemEntryKind.Directory: return stat.isDirectory();
-                        default: return false;
+                    if (stat.isFile()) {
+                        fileSystemEntryCache.set(path, FileSystemEntryKind.File);
+                        return entryKind == FileSystemEntryKind.File;
+                    } else if(stat.isDirectory()) {
+                        fileSystemEntryCache.set(path, FileSystemEntryKind.Directory);
+                        return entryKind == FileSystemEntryKind.Directory;
+                    } else {
+                        fileSystemEntryCache.set(path, -1);
+                        return false;
                     }
                 }
                 catch (e) {
+                    fileSystemEntryCache.set(path, -1);
                     return false;
                 }
             }
