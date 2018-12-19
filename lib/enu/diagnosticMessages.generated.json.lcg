@@ -1005,6 +1005,12 @@
               </Str>
               <Disp Icon="Str" />
             </Item>
+            <Item ItemId=";An_identifier_or_keyword_cannot_immediately_follow_a_numeric_literal_1351" ItemType="0" PsrId="306" Leaf="true">
+              <Str Cat="Text">
+                <Val><![CDATA[An identifier or keyword cannot immediately follow a numeric literal.]]></Val>
+              </Str>
+              <Disp Icon="Str" />
+            </Item>
             <Item ItemId=";An_implementation_cannot_be_declared_in_ambient_contexts_1183" ItemType="0" PsrId="306" Leaf="true">
               <Str Cat="Text">
                 <Val><![CDATA[An implementation cannot be declared in ambient contexts.]]></Val>
@@ -3189,12 +3195,6 @@
               </Str>
               <Disp Icon="Str" />
             </Item>
-            <Item ItemId=";In_const_enum_declarations_member_initializer_must_be_constant_expression_2474" ItemType="0" PsrId="306" Leaf="true">
-              <Str Cat="Text">
-                <Val><![CDATA[In 'const' enum declarations member initializer must be constant expression.]]></Val>
-              </Str>
-              <Disp Icon="Str" />
-            </Item>
             <Item ItemId=";Include_modules_imported_with_json_extension_6197" ItemType="0" PsrId="306" Leaf="true">
               <Str Cat="Text">
                 <Val><![CDATA[Include modules imported with '.json' extension]]></Val>
@@ -3864,6 +3864,12 @@
             <Item ItemId=";No_overload_expects_0_arguments_but_overloads_do_exist_that_expect_either_1_or_2_arguments_2575" ItemType="0" PsrId="306" Leaf="true">
               <Str Cat="Text">
                 <Val><![CDATA[No overload expects {0} arguments, but overloads do exist that expect either {1} or {2} arguments.]]></Val>
+              </Str>
+              <Disp Icon="Str" />
+            </Item>
+            <Item ItemId=";No_overload_expects_0_type_arguments_but_overloads_do_exist_that_expect_either_1_or_2_type_arguments_2743" ItemType="0" PsrId="306" Leaf="true">
+              <Str Cat="Text">
+                <Val><![CDATA[No overload expects {0} type arguments, but overloads do exist that expect either {1} or {2} type arguments.]]></Val>
               </Str>
               <Disp Icon="Str" />
             </Item>
@@ -6786,6 +6792,12 @@
             <Item ItemId=";const_enum_member_initializer_was_evaluated_to_disallowed_value_NaN_2478" ItemType="0" PsrId="306" Leaf="true">
               <Str Cat="Text">
                 <Val><![CDATA['const' enum member initializer was evaluated to disallowed value 'NaN'.]]></Val>
+              </Str>
+              <Disp Icon="Str" />
+            </Item>
+            <Item ItemId=";const_enum_member_initializers_can_only_contain_literal_values_and_other_computed_enum_values_2474" ItemType="0" PsrId="306" Leaf="true">
+              <Str Cat="Text">
+                <Val><![CDATA[const enum member initializers can only contain literal values and other computed enum values.]]></Val>
               </Str>
               <Disp Icon="Str" />
             </Item>
